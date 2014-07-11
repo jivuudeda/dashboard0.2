@@ -49,7 +49,7 @@ public class PagesView extends VerticalLayout implements View {
 
         LayoutPage page1 = new LayoutPage("Логи",new LogsPage(properties));
         LayoutPage page2 = new LayoutPage("Рестарт сервера",new TomCatRestart(properties));
-        LayoutPage page3 = new LayoutPage("Настройки",new SettingsPage(properties));
+        LayoutPage page3 = new LayoutPage("Настройки",null);
 
         pages.add(page1);
         pages.add(page2);

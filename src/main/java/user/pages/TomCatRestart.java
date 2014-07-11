@@ -83,7 +83,6 @@ public class TomCatRestart extends HorizontalLayout implements View {
             int maxYear = Integer.parseInt(maxF.getName().substring(9, 13));
             int fileMonth = Integer.parseInt(file.getName().substring(14,16));
             int maxMonth = Integer.parseInt(maxF.getName().substring(14, 16));
-            System.out.println(Integer.parseInt(file.getName().substring(14,16))+"  "+Integer.parseInt(file.getName().substring(17, 19)));
             int fileDay = Integer.parseInt(file.getName().substring(17, 19));
             int maxDay = Integer.parseInt(maxF.getName().substring(17, 19));
             if (fileYear>maxYear){

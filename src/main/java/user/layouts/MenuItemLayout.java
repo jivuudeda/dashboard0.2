@@ -12,7 +12,7 @@ import java.util.Iterator;
 
 public class MenuItemLayout extends VerticalLayout {
 
-    public MenuItemLayout(final ArrayList<LayoutPage> pages, Autorization autorization, Navigator navigator,String sessionValue) {
+    public MenuItemLayout(final ArrayList<LayoutPage> pages, Autorization autorization, final Navigator navigator,String sessionValue) {
         setSizeFull();
         Iterator iter = pages.iterator();
         addComponent(boarderSeporator());
@@ -41,19 +41,25 @@ public class MenuItemLayout extends VerticalLayout {
             menuItem.addLayoutClickListener(new LayoutEvents.LayoutClickListener() {
                 @Override
                 public void layoutClick(LayoutEvents.LayoutClickEvent layoutClickEvent) {
-                page.removeAllComponents();
-                View layout = layoutPage.getLayout();
-                page.addComponent(boarderSeporator());
-                page.addComponent((Component) layout);
-                page.addComponent(boarderSeporator());
-                page.setComponentAlignment((Component) layout, Alignment.MIDDLE_CENTER);
-                page.setExpandRatio((Component) layout,1.0f);
-                Iterator menuItemIterator = menuItems.iterator();
-                while(menuItemIterator.hasNext()){
-                    HorizontalLayout mI = (HorizontalLayout) menuItemIterator.next();
-                    mI.setStyleName("pagesMenuItem");
+                if (layoutPage.getName().equals("Настройки")){
+                    navigator.navigateTo("settings");
                 }
-                menuItem.addStyleName("selectedMenuItem");
+                else{
+                    page.removeAllComponents();
+                    View layout = layoutPage.getLayout();
+                    page.addComponent(boarderSeporator());
+                    page.addComponent((Component) layout);
+                    page.addComponent(boarderSeporator());
+                    page.setComponentAlignment((Component) layout, Alignment.MIDDLE_CENTER);
+                    page.setExpandRatio((Component) layout,1.0f);
+                    Iterator menuItemIterator = menuItems.iterator();
+                    while(menuItemIterator.hasNext()){
+                        HorizontalLayout mI = (HorizontalLayout) menuItemIterator.next();
+                        mI.setStyleName("pagesMenuItem");
+                    }
+                    menuItem.addStyleName("selectedMenuItem");
+                }
+
                 }
 
             });

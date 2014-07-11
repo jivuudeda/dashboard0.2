@@ -8,6 +8,7 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.*;
 import com.vaadin.ui.UI;
 import user.logic.Autorization;
+import user.pages.SettingsPage;
 import user.views.PagesView;
 import user.views.StartView;
 
@@ -32,7 +33,6 @@ public class MyVaadinUI extends UI{
         try {
             properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("conf.properties"));
         } catch (IOException e) {
-            System.out.println("zzzzz");
         }
         checkProperties(properties);
         chekSessionFile(properties.getProperty("sessionPath"));
@@ -40,6 +40,7 @@ public class MyVaadinUI extends UI{
         navigator = new Navigator(this,this);
         navigator.addView("login", new StartView(navigator, autorization));
         navigator.addView("logs", new PagesView(navigator, autorization,properties));
+        navigator.addView("settings", new SettingsPage(properties,navigator,autorization));
     }
 
     private void checkProperties(Properties properties) {
@@ -60,7 +61,7 @@ public class MyVaadinUI extends UI{
                 String string[]=s.split(" ");
                 keys.add(string[0]);
             }
-            if (!keys.contains("pass")){
+            if (!keys.contains("pass")){//i tak vizivat' dl'a vseh buduuwih properties is config
                 writeToConfigs("pass",properties,file);
             }
             else{
@@ -81,11 +82,9 @@ public class MyVaadinUI extends UI{
             Scanner in = new Scanner(file);
             while(in.hasNext()){
                 String s= in.nextLine();
-                System.out.println(s);
                 String substrings[]=s.split(" ");
                 if (substrings[0].equals(confName)){
                     properties.setProperty(substrings[0],substrings[2]);
-                    System.out.println(properties.getProperty(confName));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -96,7 +95,6 @@ public class MyVaadinUI extends UI{
     private void writeToConfigs(String confName, Properties properties, File file) {//perepisivaet a ne dozapisivaet
         try {
             FileWriter fw = new FileWriter(file,true);
-            FileReader in = new FileReader(file);
             String s="";
             s+=confName+" = "+properties.getProperty(confName);
             fw.write(s+"\n");
