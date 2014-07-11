@@ -1,0 +1,65 @@
+@import "addons.scss";
+@import "mytheme.scss";
+
+.mytheme {
+  @include addons;
+
+
+  @include mytheme;
+  .v-verticallayout-loginLayout{
+    background: snow;
+    border: medium solid black;
+    border-width:1px;
+    border-radius:10px 10px;
+  }
+
+  .v-label-welcome{
+    color:skyblue;
+    font-size: 20px;
+  }
+
+  .v-verticallayout-pagesView{
+    background: dimgray;
+  }
+
+  .v-horizontallayout-pagesMenuItem{
+    background: lightgray;
+    border: medium solid black;
+    border-width:1px;
+    border-radius:10px 10px;
+  }
+
+  .v-horizontallayout-selectedMenuItem{
+    background: ghostwhite;
+    border: medium solid black;
+    border-width:1px;
+    border-radius:10px 10px;
+  }
+
+  .v-horizontallayout-adressStile{
+    background: snow;
+    border: medium solid black;
+    border-width:1px;
+    border-radius:5px 5px;
+
+  }
+
+  .v-select-select{
+    background: snow;
+    border: medium solid black;
+    border-width:1px;
+    border-radius:10px 10px;
+
+  }
+
+  .v-textarea-log{
+    background: snow;
+    border: medium solid black;
+    border-width:1px;
+    border-radius:10px 10px;
+  }
+
+  .v-verticallayout-startPage{
+    background: dimgray;
+  }
+}
